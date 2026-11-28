@@ -366,6 +366,10 @@ Claude Code 的 Auto Mode 会自动判断一次工具调用能否放行。Anthro
 
 检查可以与主模型生成后续内容或界面更新并行，以缩短额外等待；被检查的调用必须等待放行。例如，用户交代“看看配置”，主模型却准备写回文件。路径可能完全合法，操作的含义却从查看变成了修改。设计这类检查时，可以让 Jev 一类判断模型对照用户原话和工具参数，区分“符合请求”“超出请求”和“需要进一步确认”。分类结果供审批流程使用，文件访问权限仍由执行层逐次检查。
 
+Meta 的个人 Agent Muse 把放行权交给了一个独立的程序 Sentinel：Muse 只能提出操作，执行与否由 Sentinel 决定。两者运行在同一台云端虚拟机上，但在系统层面相互隔离，模型无法绕过 Sentinel。Muse 每次调用连接器，Sentinel 都会收到所访问的服务、操作类型、作用范围和用户的原始请求，再依据用户设定的权限，给出放行、拒绝或请用户确认三种结果之一。用户的批准只对指定的服务和用途有效，可以仅限这一次，也可以覆盖本次任务、一段时间，或长期有效。此外，Muse 持有的只是替代令牌，接触不到真实的账号凭据；请求离开虚拟机时，Sentinel 才把令牌换成真实凭据。这样，即使模型受到提示注入，也无从获取用户的凭据。[^ch4-muse-sentinel]
+
+[^ch4-muse-sentinel]: Meta，《Security and Safety for AI Agents: Our Approach with Muse》，2026，介绍 Sentinel 对连接器调用和对外网络请求的审批、批准范围与替代凭据。
+
 [^ch4-auto-mode]: Anthropic，*How we built Claude Code auto mode: a safer way to skip permissions*，2026 年 3 月 25 日，介绍权限分层、调用分类器及输入隔离方式。
 
 提议者—审核者描述职责分工，Sidecar 描述辅助模块与主循环的运行关系。审核者可以由 Sidecar 承担，Sidecar 也可以完成其他任务。表4-2 从本节讨论的典型用法比较两者。
