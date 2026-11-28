@@ -90,7 +90,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/Library/Fonts
-          key: fonts-${{ runner.os }}-${{ runner.arch }}-v4-${{ hashFiles('.github/scripts/install_apple_fonts.sh') }}
+          key: fonts-${{ runner.os }}-${{ runner.arch }}-v5-${{ hashFiles('.github/scripts/install_apple_fonts.sh') }}
 
       # The MacTeX tree is installed by a root pkg into /usr/local/texlive, so it
       # can't be extracted straight back as the runner user. Cache a tarball
@@ -140,7 +140,7 @@ jobs:
           HOMEBREW_NO_AUTO_UPDATE: '1'
           HOMEBREW_NO_INSTALL_CLEANUP: '1'
         run: |
-          brew install --cask font-dejavu font-noto-sans-cjk-sc font-noto-sans-cjk-tc font-noto-serif-tamil font-amiri font-noto-naskh-arabic font-noto-sans-arabic
+          brew install --cask font-dejavu font-noto-sans-cjk-sc font-noto-sans-cjk-tc font-noto-serif-tamil font-noto-sans-tamil font-noto-sans-hebrew font-amiri font-noto-naskh-arabic font-noto-sans-arabic
           brew install --cask font-noto-sans-cjk-jp || true
           brew install --cask font-noto-serif-cjk-jp || brew install --cask font-noto-serif-cjk || true
           brew install --cask font-noto-sans-cjk-kr
