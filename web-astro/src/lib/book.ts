@@ -32,7 +32,7 @@ export function getBook(locale: Locale, chapterNumber = 1) {
   const edition = editions[locale];
   const t = translator(locale);
   const chapterPath = edition.chapter;
-  const chapters = Array.from({ length: 10 }, (_, index) => {
+  const chapters = Array.from({ length: locale === 'zh-CN' ? 11 : 10 }, (_, index) => {
     const number = index + 1;
     const source =
       chapterSources[
@@ -43,7 +43,10 @@ export function getBook(locale: Locale, chapterNumber = 1) {
       number,
       label: String(number).padStart(2, '0'),
       title,
-      description: t(descriptions[index]),
+      description:
+        number === 11
+          ? '限制本地执行权限，把 Agent 的修改安全地保存到用户指定的位置。'
+          : t(descriptions[index]),
       href: availableChapters.includes(number)
         ? withBase(`/${edition.directory}/chapter${number}${edition.suffix}/`)
         : `${originalSite}/${edition.directory}/chapter${number}${edition.suffix}/`,

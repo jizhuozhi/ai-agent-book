@@ -25,6 +25,7 @@ CHAPTERS=(
     chapter8.md
     chapter9.md
     chapter10.md
+    chapter11.md
     afterword.md
 )
 

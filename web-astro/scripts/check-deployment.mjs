@@ -76,7 +76,7 @@ for (const [locale, edition] of Object.entries(editions)) {
     pages.has(join(dist, edition.home, 'index.html')),
     `Missing ${locale} homepage`,
   );
-  for (let chapter = 1; chapter <= 10; chapter++) {
+  for (let chapter = 1; chapter <= (locale === 'zh-CN' ? 11 : 10); chapter++) {
     assert.ok(
       pages.has(
         join(

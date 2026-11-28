@@ -7,7 +7,7 @@
 
 > 📥 **[下载 PDF / EPUB](#-电子书)**（推荐）— 推荐使用 PDF / EPUB 离线阅读，排版最佳；也可[在线阅读](https://bojieli.github.io/ai-agent-book/astro/)（支持多语言切换、章节折叠、高亮与笔记，每次推送自动更新）。
 
-**Agent = LLM + 上下文 + 工具**——本书围绕这个核心公式，用 10 章把 AI Agent 从原理讲到工程实战。全书正文、配图、**110 个配套实验**全部开源，欢迎亲手把实验跑一遍。
+**Agent = LLM + 上下文 + 工具**——本书围绕这个核心公式，用 11 章把 AI Agent 从原理讲到工程实战。全书正文、配图、**111 个配套实验**全部开源，欢迎亲手把实验跑一遍。
 
 > 📚 **姊妹篇《深入理解 AI Infra：量化分析与系统设计》已开源发布**，欢迎阅读：[github.com/bojieli/ai-infra-book](https://github.com/bojieli/ai-infra-book)
 >
@@ -19,7 +19,7 @@
 >
 > 如果你看到的是旧版 PDF，建议[下载最新版 PDF](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-zh-CN.pdf)。新版还包含许多内容修正与调整，请以最新版为准。
 
-| 📚 **10 章** 正文，从基础到生产 | 📂 **110 个** 配套实验（含本地项目与外部复现轨道） | 🌐 **15 种** 语言：中 / 英 / 西 / 印尼 / 阿 / 繁體中文（台灣） / 俄 / 泰米尔 / 越 / 日 / 土耳其 / 韩 / 匈牙利 / 希伯来 / 葡萄牙语（巴西） |
+| 📚 **11 章** 正文，从基础到生产 | 📂 **111 个** 配套实验（含本地项目与外部复现轨道） | 🌐 **15 种** 语言：中 / 英 / 西 / 印尼 / 阿 / 繁體中文（台灣） / 俄 / 泰米尔 / 越 / 日 / 土耳其 / 韩 / 匈牙利 / 希伯来 / 葡萄牙语（巴西） |
 | :---: | :---: | :---: |
 
 ## 📖 电子书
@@ -51,7 +51,7 @@
 <summary><b>🔧 想自行编译 PDF / EPUB？</b>（PDF 需 pandoc / xelatex / ElegantBook）</summary>
 
 - **EPUB**：使用统一的构建脚本，详情请参阅 [EPUB 构建说明](EPUB.md)
-- **正文源码**：`book/introduction.md`（引言）、`book/chapter1.md` ~ `book/chapter10.md`（第一至第十章）、`book/afterword.md`（后记）
+- **正文源码**：`book/introduction.md`（引言）、`book/chapter1.md` ~ `book/chapter11.md`（第一至第十一章）、`book/afterword.md`（后记）
 - **编译**：安装 pandoc、xelatex、ElegantBook 文档类与相关字体后，运行
 
   ```bash
@@ -62,9 +62,9 @@
 
 </details>
 
-## 📑 内容速览（第 1–10 章）
+## 📑 内容速览（第 1–11 章）
 
-全书围绕核心公式 **Agent = LLM + 上下文 + 工具** 展开，十章层层递进：
+全书围绕核心公式 **Agent = LLM + 上下文 + 工具** 展开：
 
 | 章 | 主题 | 一句话核心 | 正文 | 实验 |
 | :--: | --- | --- | :--: | :--: |
@@ -78,6 +78,7 @@
 | 8 | 🧠 **模型后训练** | 预训练/SFT/RL 三阶段：何时选 SFT、何时选 RL，工具调用内化、样本效率 | [读](book/chapter8.md) | [19](chapter8/README.md) |
 | 9 | 🔄 **Agent 的持续进化** | 从运行轨迹获得学习信号，更新知识、指令、程序与参数 | [读](book/chapter9.md) | [9](chapter9/README.md) |
 | 10 | 🤝 **多 Agent 协作** | 群体智能高于个体：协作框架、上下文共享/隔离、涌现的「Agent 社会」 | [读](book/chapter10.md) | [6](chapter10/README.md) |
+| 11 | **个人 Agent 的安全沙盒与本地执行** | 从一次本地文件编辑理解用户授权、进程隔离、候选验收与受控写回 | [读](book/chapter11.md) | [1](chapter11/README.md) |
 
 > 💡 **读** = 在 GitHub 网页直接读章节正文（markdown）；**N** = 该章正文实验数，点击查看实现与复现说明。项目类型说明（✅ 可运行 / 📖 复现 / 🚧 设计）见各章 README。
 >
@@ -92,9 +93,9 @@ git clone https://github.com/bojieli/ai-agent-book.git
 cd ai-agent-book
 ```
 
-也可以在仓库页面选择 **Code → Download ZIP** 下载。实验按章节组织在 `chapter1/` 至 `chapter10/` 中；查找“实验 X-Y”时，先打开对应的 `chapterX/README.md`，根据实验编号进入项目，再按项目 README 配置并运行。复现指南所需的外部仓库由相应 README 列出。
+也可以在仓库页面选择 **Code → Download ZIP** 下载。实验按章节组织在 `chapter1/` 至 `chapter11/` 中。查找“实验 X-Y”时，先打开对应的 `chapterX/README.md`，根据实验编号进入项目，再按项目 README 配置并运行。复现指南所需的外部仓库由相应 README 列出。
 
-项目统一支持 **Python 3.11–3.13**。请在仓库根目录按章节安装依赖；将 `ch1` 替换为 `ch2` ~ `ch10` 即可安装对应章节：
+前十章的 Python 项目统一支持 **Python 3.11–3.13**。在仓库根目录将 `ch1` 替换为 `ch2` ~ `ch10` 即可安装对应章节的依赖。第十一章使用系统 Python 和 Linux 沙盒工具，见[实验说明](chapter11/README.md)。
 
 ```bash
 # 推荐：使用提交到仓库的 uv.lock，获得可复现的章节环境

@@ -22,7 +22,7 @@ const editions = Object.entries(editionData).map(([lang, edition]) => ({
 const pages = editions.flatMap((edition) =>
   [
     edition.home,
-    ...availableChapters.map((number) =>
+    ...availableChapters.slice(0, edition.lang === 'zh-CN' ? 11 : 10).map((number) =>
       edition.chapter.replace('chapter1', `chapter${number}`),
     ),
   ].map((route) => ({
@@ -254,7 +254,7 @@ test('Chinese footnotes keep separate citation URLs and translated navigation', 
 
 test('All 15 maintained editions have complete UI catalogs and isolated browser messages', () => {
   assert.equal(editions.length, 15);
-  assert.equal(pages.length, editions.length * (availableChapters.length + 1));
+  assert.equal(pages.length, editions.length * 11 + 1);
   const catalogs = Object.fromEntries(
     editions.map(({ lang }) => [
       lang,
@@ -306,6 +306,23 @@ test('Arabic citation punctuation stays outside links', () => {
   }
 });
 
+test('Chapter 11 is discoverable in the Chinese reader and switches to translated homepages', () => {
+  const route = '/book/chapter11/';
+  const home = pages.find((page) => page.route === '/').html;
+  const chapter = pages.find((page) => page.route === route).html;
+  const englishHome = pages.find((page) => page.route === '/en/').html;
+  assert.ok(home.includes(`href="${route}"`));
+  assert.ok(!englishHome.includes('chapter11'));
+  assert.ok(chapter.includes('个人 Agent 的安全沙盒与本地执行'));
+  assert.ok(chapter.includes('为什么通用执行需要沙盒'));
+  assert.ok(chapter.includes('data-chapter-key="ai-agents-in-depth:zh-CN:chapter11"'));
+  assert.ok(chapter.includes('href="/book/chapter10/"'));
+  assert.ok(chapter.includes('href="https://bojieli.github.io/ai-agent-book/chapter11/"'));
+  const picker = chapter.match(/<details class="language-picker">([\s\S]*?)<\/details>/)[1];
+  assert.ok(picker.includes('href="/en/"'));
+  assert.ok(!picker.includes('href="/book-en/chapter11/"'));
+});
+
 test('Chapter 1 language section links resolve and round-trip across editions', () => {
   const maps = Object.fromEntries(
     editions.map((edition) => {
@@ -340,9 +357,10 @@ test('Chinese homepage is the default and machine options are clearly separate',
   assert.ok(
     readFileSync(join(dist, 'en/index.html'), 'utf8').includes('lang="en"'),
   );
-  for (const { html } of pages) {
-    assert.equal([...html.matchAll(/data-machine-language=/g)].length, 21);
-    assert.ok(html.includes('未经审核 / Not vetted'));
+  for (const { route, html } of pages) {
+    const hasMachineTranslation = route !== '/book/chapter11/';
+    assert.equal([...html.matchAll(/data-machine-language=/g)].length, hasMachineTranslation ? 21 : 0);
+    assert.equal(html.includes('未经审核 / Not vetted'), hasMachineTranslation);
     assert.ok(!html.includes('<script src="https://cdn.staticfile.net'));
   }
 });
@@ -443,6 +461,7 @@ test('Chapter 2 visual replacements preserve originals and highlight teaching ex
 test('Every chapter figure has two styled variants and an untouched original', () => {
   for (const edition of editions)
     for (const number of availableChapters) {
+      if (number === 11 && edition.lang !== 'zh-CN') continue;
       const markdown = readFileSync(
         new URL(
           `../../${edition.directory}/chapter${number}${edition.suffix}.md`,
@@ -806,7 +825,7 @@ for (const chapterNumber of [3, 4, 5, 6, 7, 8, 9, 10])
         /<nav\b[^>]*class="chapter-pager"[^>]*>([\s\S]*?)<\/nav>/,
       )?.[1];
       assert.ok(pager, `Missing chapter navigation in ${edition.lang}`);
-      if (chapterNumber === 10) {
+      if (chapterNumber === 10 && edition.lang !== 'zh-CN') {
         assert.ok(
           pager.includes(`href="${edition.home}#contents"`),
           edition.lang,

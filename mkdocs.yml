@@ -301,5 +301,6 @@ nav:
   - 第10章 多Agent协作:
       - book/chapter10/index.md
       - 配套实验: chapter10/README.md
+  - book/chapter11/index.md
   - 后记: book/afterword.md
   - 思考题参考答案: book/reference-answers.md

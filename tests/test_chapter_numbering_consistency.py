@@ -23,6 +23,7 @@ CHAPTERS = {
     8: ("模型后训练", 19),
     9: ("Agent 的持续进化", 9),
     10: ("多 Agent 协作", 6),
+    11: ("个人 Agent 的安全沙盒与本地执行", 1),
 }
 
 RENAMED_RUNS = (
@@ -63,7 +64,7 @@ def test_public_chapter_indexes_use_the_2_0_structure():
 
     for document in (root_readme, zh_readme):
         assert "书稿版本已由 1.4 升级为 2.0" in document
-        assert "**110 个配套实验**" in document
+        assert "**111 个配套实验**" in document
         for number, (title, count) in CHAPTERS.items():
             assert f"| {number} |" in document
             assert f"**{title}**" in document
@@ -75,16 +76,17 @@ def test_public_chapter_indexes_use_the_2_0_structure():
 
 def test_introduction_uses_two_parts_and_current_chapter_numbers():
     introduction = read("book/introduction.md")
-    structure_figure = read("book/images/fig0-2.svg")
+    figure_path = "images/revised/fig0-2.svg"
+    structure_figure = read(f"book/{figure_path}")
 
-    assert "第一部分“如何构建 Agent”" in introduction
-    assert "第二部分“如何提升 Agent 能力”" in introduction
-    assert "沿四个层次展开" not in introduction
-    assert "第一部分　如何构建 Agent" in structure_figure
-    assert "第二部分　如何提升 Agent 能力" in structure_figure
-    assert "第 6 章　交互" in structure_figure
-    assert "第 7 章　Agent 的评估" in structure_figure
-    assert "第 10 章　多 Agent 协作" in structure_figure
+    assert figure_path in introduction
+    assert "第十一章（个人 Agent 的安全沙盒与本地执行）" in introduction
+    assert "第一部分：如何构建 Agent" in structure_figure
+    assert "第二部分：如何提升能力" in structure_figure
+    assert "第 6 章 交互" in structure_figure
+    assert "第 7 章 Agent 的评估" in structure_figure
+    assert "第 10 章 多 Agent 协作" in structure_figure
+    assert "第 11 章 个人 Agent 的安全沙盒与本地执行" in structure_figure
 
 
 def test_book_build_metadata_uses_v2_0_everywhere():

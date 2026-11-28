@@ -86,6 +86,7 @@ const root = new URL('../../', import.meta.url);
 let count = 0;
 for (const [locale, { directory, suffix }] of Object.entries(editions)) {
   for (const chapterNumber of availableChapters) {
+    if (chapterNumber === 11 && locale !== 'zh-CN') continue;
     const markdown = await readFile(
       new URL(`${directory}/chapter${chapterNumber}${suffix}.md`, root),
       'utf8',

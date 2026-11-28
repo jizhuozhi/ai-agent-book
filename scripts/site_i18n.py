@@ -271,7 +271,7 @@ def build_catalog() -> dict[str, Any]:
             continue
         book_dir = ROOT / prefix.rstrip("/")
         suffix = language_config.get("suffix", "")
-        prose_slugs = ["introduction", *(f"chapter{n}" for n in range(1, 11)), "afterword", "reference-answers"]
+        prose_slugs = ["introduction", *(f"chapter{n}" for n in range(1, 12 if code == "zh" else 11)), "afterword", "reference-answers"]
         for slug in prose_slugs:
             source = book_dir / f"{slug}{suffix}.md"
             if not source.is_file():

@@ -21,8 +21,11 @@ def test_every_homepage_uses_current_manuscript_titles_and_valid_links():
         code = home.name.split('.')[1] if home.name != 'index.md' else 'zh'
         language = config['extra']['languages'][code]
         assert MARKER not in rendered
-        assert rendered.count('class="exp-card"') == 13
-        for number in range(1, 11):
+        available = range(1, 12 if code == 'zh' else 11)
+        assert rendered.count('class="exp-card"') == len(available) + 3
+        if code != 'zh':
+            assert 'chapter11' not in rendered
+        for number in available:
             source = ROOT / language['prefix'] / f"chapter{number}{language.get('suffix', '')}.md"
             title, _ = read_headings(source)
             import html

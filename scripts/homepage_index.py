@@ -82,6 +82,8 @@ def render_cards(root: Path, language: dict, chapters: list[str], *, translated:
     relative = "../" if translated else ""
     cards = []
     for slug in ["introduction", *chapters, "afterword", "reference-answers"]:
+        if translated and slug == "chapter11":
+            continue
         title, sections = read_headings(root / prefix / f"{slug}{suffix}.md")
         number = slug.removeprefix("chapter") if slug.startswith("chapter") else ""
         label = f"{number} · {title}" if number else title

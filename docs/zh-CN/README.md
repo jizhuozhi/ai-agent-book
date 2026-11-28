@@ -7,7 +7,7 @@
 
 > 📥 **[下载 PDF / EPUB](#-电子书)**（推荐）— 推荐使用 PDF / EPUB 离线阅读，排版最佳；也可[在线阅读](https://bojieli.github.io/ai-agent-book/astro/)（支持多语言切换、章节折叠、高亮与笔记，每次推送自动更新）。
 
-**Agent = LLM + 上下文 + 工具**——本书围绕这个核心公式，用 10 章把 AI Agent 从原理讲到工程实战。全书正文、配图、**110 个配套实验**全部开源，欢迎亲手把实验跑一遍。
+**Agent = LLM + 上下文 + 工具**——本书围绕这个核心公式，用 11 章把 AI Agent 从原理讲到工程实战。全书正文、配图、**111 个配套实验**全部开源，欢迎亲手把实验跑一遍。
 
 > 📚 **姊妹篇《深入理解 AI Infra：量化分析与系统设计》已开源发布**，欢迎阅读：[github.com/bojieli/ai-infra-book](https://github.com/bojieli/ai-infra-book)
 >
@@ -17,7 +17,7 @@
 >
 > 如果你看到的是旧版 PDF，建议[下载最新版 PDF](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-zh-CN.pdf)。新版还包含许多内容修正与调整，请以最新版为准。
 
-| 📚 **10 章** 正文，从基础到生产 | 📂 **110 个** 配套实验（含本地项目与外部复现轨道） | 🌐 **15 种** 语言：中 / 英 / 西 / 印尼 / 阿 / 繁體中文（台灣） / 俄 / 泰米尔 / 越 / 日 / 土耳其 / 韩 / 匈牙利 / 希伯来 / 葡萄牙语（巴西） |
+| 📚 **11 章** 正文，从基础到生产 | 📂 **111 个** 配套实验（含本地项目与外部复现轨道） | 🌐 **15 种** 语言：中 / 英 / 西 / 印尼 / 阿 / 繁體中文（台灣） / 俄 / 泰米尔 / 越 / 日 / 土耳其 / 韩 / 匈牙利 / 希伯来 / 葡萄牙语（巴西） |
 | :---: | :---: | :---: |
 
 ## 📖 电子书
@@ -44,7 +44,7 @@
 <summary><b>🔧 自行编译 PDF / EPUB？</b>（PDF 需 pandoc / xelatex / ElegantBook）</summary>
 
 - **EPUB**：使用共享构建脚本，详见 [EPUB 构建说明](../../EPUB.md)
-- **正文源码**：`book/introduction.md`（引言）、`book/chapter1.md` ~ `book/chapter10.md`（第一至第十章）、`book/afterword.md`（后记）
+- **正文源码**：`book/introduction.md`（引言）、`book/chapter1.md` ~ `book/chapter11.md`（第一至第十一章）、`book/afterword.md`（后记）
 - **编译**：安装 pandoc、xelatex、ElegantBook 文档类与相关字体后，运行
 
   ```bash
@@ -55,7 +55,7 @@
 
 </details>
 
-## 📑 内容速览（第 1–10 章）
+## 📑 内容速览（第 1–11 章）
 
 全书围绕核心公式 **Agent = LLM + 上下文 + 工具** 展开，十章层层递进：
 
@@ -71,6 +71,7 @@
 | 8 | 🧠 **模型后训练** | 预训练/SFT/RL 三阶段：何时选 SFT、何时选 RL，工具调用内化、样本效率 | [读](../../book/chapter8.md) | [19](../../chapter8/README.md) |
 | 9 | 🔄 **Agent 的持续进化** | 从运行轨迹获得学习信号，更新知识、指令、程序与参数 | [读](../../book/chapter9.md) | [9](../../chapter9/README.md) |
 | 10 | 🤝 **多 Agent 协作** | 群体智能高于个体：协作框架、上下文共享/隔离、涌现的「Agent 社会」 | [读](../../book/chapter10.md) | [6](../../chapter10/README.md) |
+| 11 | **个人 Agent 的安全沙盒与本地执行** | 从一次本地文件编辑理解用户授权、进程隔离、候选验收与受控写回 | [读](../../book/chapter11.md) | [1](../../chapter11/README.md) |
 
 > 💡 **读** = 在 GitHub 网页直接读章节正文（markdown）；**N** = 该章配套项目数，点击查看代码。项目类型说明（✅ 可运行 / 📖 复现 / 🚧 设计）见各章 README。
 >

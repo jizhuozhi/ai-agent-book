@@ -54,7 +54,7 @@ def components():
 
 
 def roadmap():
-    f=Figure('全书结构：构建 Agent 与提升 Agent 能力','第一至六章建立构建方法，第七章提供评估反馈，第八至十章从参数、系统更新与协作提升能力。',890)
+    f=Figure('全书结构：构建 Agent 与提升 Agent 能力','第一至六章建立构建方法，第七章提供评估反馈，第八至十章从参数、系统更新与协作提升能力。第十一章用本地文件编辑串起授权、执行与验收。',1000)
     f.box(20,20,400,65,fill='#dedede')
     f.text(220,60,'第一部分：如何构建 Agent',24,True)
     f.box(480,20,400,65,fill='#dedede')
@@ -86,6 +86,9 @@ def roadmap():
         f.box(522,y,358,130)
         f.text(701,y+46,chapter,22,True)
         f.text(701,y+94,question,20)
+    f.box(20,858,860,115)
+    f.text(450,901,'第 11 章 个人 Agent 的安全沙盒与本地执行',22,True)
+    f.text(450,945,'怎样按用户授权修改并保存本地文件？',20)
     f.save('fig0-2.svg')
 
 

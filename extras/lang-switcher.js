@@ -48,6 +48,7 @@
           if (cfg[codes[r]].readmeSuffix === readmeMatch[1]) return codes[r];
         }
       }
+      if (/^\/chapter11(?:\/|$)/.test(p)) return "zh";
       // Translated homepages (/index.<code>/) carry their locale in the slug.
       var homeMatch = p.match(/(?:^|\/)index\.([a-zA-Z-]+)$/);
       if (homeMatch && cfg[homeMatch[1]]) return homeMatch[1];
@@ -101,7 +102,8 @@
       // home → home; the rest keep the original fallback to their
       // introduction page, which every edition has.
       var homePages = i18n.homePages || [];
-      if (cleanPath === "/" || cleanPath === "/index.html") {
+      if (cleanPath === "/" || cleanPath === "/index.html" ||
+          (toCode !== "zh" && /^\/(?:book\/)?chapter11(?:\/|$)/.test(cleanPath))) {
         if (homePages.indexOf(toCode) !== -1) return "/index." + toCode + "/";
         return "/" + dst.prefix + "introduction" + (dst.suffix || "") + "/";
       }
@@ -380,6 +382,11 @@
               if (linkPath.indexOf(base) === 0) {
                 var linkRel = "/" + linkPath.slice(base.length).replace(/^\//, "");
                 var linkLang = detectLang(linkRel);
+                if (targetCode !== defCode && linkRel === "/book/chapter11/") {
+                  var chapterItem = el.closest(".md-nav__item");
+                  if (chapterItem) chapterItem.hidden = true;
+                  continue;
+                }
                 // The canonical sidebar is rendered from the default-language
                 // nav, so an un-suffixed /chapterN/ link always starts as the
                 // default experiment index. Do not let the remembered active

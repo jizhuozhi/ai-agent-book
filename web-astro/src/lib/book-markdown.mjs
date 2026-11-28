@@ -233,7 +233,11 @@ export function bookMarkdown({ base = '/' } = {}) {
         const chapterLink = node.url.match(
           /^chapter(\d+)(?:\.[a-z]+)?\.md(?=#|$)/,
         );
-        if (chapterLink && availableChapters.includes(Number(chapterLink[1]))) {
+        if (
+          chapterLink &&
+          availableChapters.includes(Number(chapterLink[1])) &&
+          (chapterLink[1] !== '11' || directory === 'book')
+        ) {
           node.url = node.url.replace(
             chapterLink[0],
             withBase(`/${directory}/chapter${chapterLink[1]}${suffix}/`, base),

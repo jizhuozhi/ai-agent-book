@@ -25,6 +25,7 @@ const sources = import.meta.glob<MarkdownInstance<Record<string, unknown>>>(
     '../../../../book*/chapter9.*.md',
     '../../../../book*/chapter10.md',
     '../../../../book*/chapter10.*.md',
+    '../../../../book*/chapter11.md',
     // The Mongolian community edition is available as Markdown and a local PDF.
     '!../../../../book-mn/**',
   ],
@@ -32,7 +33,8 @@ const sources = import.meta.glob<MarkdownInstance<Record<string, unknown>>>(
 );
 export function getStaticPaths() {
   return locales.flatMap((locale) =>
-    availableChapters.map((chapterNumber) => {
+    availableChapters.flatMap((chapterNumber) => {
+      if (chapterNumber === 11 && locale !== 'zh-CN') return [];
       const edition = editions[locale];
       return {
         params: {
@@ -55,6 +57,7 @@ const headings = chapter
   .filter(({ depth }) => depth === 2 || depth === 3);
 const sectionLinks: Record<string, Record<string, string>> = {};
 for (const language of locales) {
+  if (chapterNumber === 11 && language !== 'zh-CN') continue;
   const target = editions[language];
   const translated = sources[
     `../../../../${target.directory}/chapter${chapterNumber}${target.suffix}.md`

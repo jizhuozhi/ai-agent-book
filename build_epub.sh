@@ -55,7 +55,7 @@ build_edition() {
             output="深入理解-AI-Agent-李博杰-v3.0.epub"
             title_label="扉页"
             toc_label="目录"
-            chapters=(introduction.md chapter{1..10}.md afterword.md)
+            chapters=(introduction.md chapter{1..11}.md afterword.md)
             ;;
         zh-TW)
             directory="book-zhtw"

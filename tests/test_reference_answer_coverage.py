@@ -15,7 +15,7 @@ def questions(path):
 
 def test_chinese_questions_have_matching_reference_answers():
     sections = answer_sections(ROOT / 'book/reference-answers.md')
-    assert len(sections) == 10
+    assert len(sections) == 11
     for number, section in enumerate(sections, 1):
         expected = [n for n, text in questions(ROOT / f'book/chapter{number}.md')]
         actual = re.findall(r'^\*\*(\d+)\. ', section, re.M)
@@ -34,7 +34,7 @@ def test_chapter9_answers_cover_each_completed_translation():
                 # Some filenames redirect to the edition's canonical answer
                 # file. Hebrew explicitly links to English pending translation.
                 continue
-            assert len(sections) == 10, answer_file
+            assert len(sections) == (11 if book.name == 'book' else 10), answer_file
             chapter_file = next(book.glob('chapter9*.md'))
             expected = questions(chapter_file)
             actual = re.findall(r'^\*\*(\d+)\. \(★★★?\) (.+)\*\*$', sections[8], re.M)

@@ -134,6 +134,7 @@ export function initContinueReading() {
   const info = document.getElementById('continue-reading-info')!;
   const update = () => {
     const candidates = availableChapters
+      .filter((number) => number !== 11 || link.dataset.chapterKey!.includes(':zh-CN:'))
       .map((number) => ({
         number,
         saved: loadPosition(

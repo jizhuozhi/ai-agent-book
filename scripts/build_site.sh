@@ -39,7 +39,7 @@ done
 # URLs). The file now lives one directory deeper, so its relative image
 # references need a ../ prefix. Translated editions stay flat files: they
 # are not listed in the nav, so they gain nothing from the promotion.
-for n in 1 2 3 4 5 6 7 8 9 10; do
+for n in 1 2 3 4 5 6 7 8 9 10 11; do
   src="$DEST/book/chapter$n.md"
   [ -f "$src" ] || continue
   mkdir -p "$DEST/book/chapter$n"
@@ -55,7 +55,7 @@ done
 # documented by its own README.md. These are exposed under /chapterN/ so
 # readers can step from the chapter prose straight into runnable code.
 for ch in chapter1 chapter2 chapter3 chapter4 chapter5 \
-         chapter6 chapter7 chapter8 chapter9 chapter10; do
+         chapter6 chapter7 chapter8 chapter9 chapter10 chapter11; do
   if [ -d "$ROOT/$ch" ]; then
     cp -R "$ROOT/$ch" "$DEST/"
   fi
